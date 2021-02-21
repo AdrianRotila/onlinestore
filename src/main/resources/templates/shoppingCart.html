@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+    <title>Online Store</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar sticky-top navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="index.html" class="navbar-brand"><h2 style="font-style: italic">Online Store</h2></a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Users
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-style: italic">
+                    <a class="dropdown-item" href="/register">Add Account</a>
+                    <a class="dropdown-item" href=userAccount-list.html>Account List</a>
+                </div>
+            </li>
+        </ul>
+
+        <span style="color: white" sec:authorize="isAuthenticated()">
+            | Logged as: <span  sec:authentication=" name"></span> |
+            Roles: <span sec:authentication="principal.authorities"></span> |
+            <a id="logout" class="btn btn-outline-light rounded-pill" th:href="@{/logout}">Logout</a>
+        </span>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com" style="color: white; margin-left: 16px" class="fa fa-facebook"></a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com" style="color:  white; margin-left: 16px" class="fa fa-instagram"></a>
+        <!-- Twitter -->
+        <a href="https://www.twitter.com" style="color: white; margin-left: 16px" class="fa fa-twitter"></a>
+
+        <!-- Sign In -->
+        <a id="login" class="nav-link btn btn-outline-light rounded-pill" href="login.html" style="margin-left: 16px" >Login</a>
+        <!-- Create Account -->
+        <a class="nav-link btn btn-outline-light rounded-pill" href="register.html" style="margin-left: 16px">Create
+            Account</a>
+        <!-- Cart -->
+        <a href=shoppingCart.html style="margin-left: 26px; margin-right: 15px">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-basket3-fill" fill="white"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172z"/>
+                <path d="M2.468 15.426L.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z"/>
+            </svg>
+        </a>
+    </div>
+</nav>
+
+
+</body>
+</html>
