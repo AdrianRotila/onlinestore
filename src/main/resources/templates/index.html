@@ -41,7 +41,7 @@
         </ul>
 
         <!-- Sign In -->
-        <a id="login" class="nav-link btn btn-outline-light rounded-pill" sec:authorize="!isAuthenticated()" th:href="@{/login}" style="margin-left: 16px">Login</a>
+        <a id="login" class="nav-link btn btn-outline-light rounded-pill" sec:authorize="!isAuthenticated()" href="/login" style="margin-left: 16px">Login</a>
         <span style="color: white" sec:authorize="isAuthenticated()">
             | Logged as: <span sec:authentication=" name"></span> |
             Roles: <span sec:authentication="principal.authorities"></span> |

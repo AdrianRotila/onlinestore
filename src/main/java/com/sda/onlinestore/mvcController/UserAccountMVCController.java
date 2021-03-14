@@ -1,14 +1,9 @@
 package com.sda.onlinestore.mvcController;
 
-import com.sda.onlinestore.dto.AddressDto;
 import com.sda.onlinestore.dto.UserAccountDto;
-import com.sda.onlinestore.entity.Role;
 import com.sda.onlinestore.entity.UserAccount;
 import com.sda.onlinestore.service.UserAccountService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,18 +24,18 @@ public class UserAccountMVCController {
 
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "signinSignup";
     }
     @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "login";
+        return "signinSignup";
     }
 
     @GetMapping(path = "/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("userRegister", new UserAccountDto());
-        return "register";
+        return "signinSignup";
     }
 
 
@@ -54,10 +49,10 @@ public class UserAccountMVCController {
             result.rejectValue("password", null, "Passwords are not matching!");
         }
         if (result.hasErrors()) {
-            return "register";
+            return "signinSignup";
         }
         userAccountService.addUserAccount(userAccountDto);
-        return "/login";
+        return "signinSignup";
     }
 
     @GetMapping(path = "/viewUserAccounts")
