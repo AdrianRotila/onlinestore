@@ -16,14 +16,15 @@
         <div class="signin-signup">
 
             <!--LOGIN FORM-->
+
             <form class="sign-in-form" th:action="@{/signinSignup}" method="post">
                 <h2 class="title">Sign in</h2>
-                <!--                <div class="wrong-credentials" role="alert" th:if="${param.error}">-->
-                <!--                    Wrong username or password!-->
-                <!--                </div>-->
-                <!--                <div class="logout" role="alert" th:if="${param.logout}">-->
-                <!--                    You have been logged out!-->
-                <!--                </div>-->
+                <div class="wrong-credentials" role="alert" th:if="${param.error}">
+                    Wrong username or password!
+                </div>
+                <div class="logout" role="alert" th:if="${param.logout}">
+                    You have been logged out!
+                </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input type="text" placeholder="Username" required/>
@@ -52,18 +53,6 @@
 
             <!--REGISTRATION FORM-->
 
-            <!--            <label for="country"><b>Country</b></label>-->
-            <!--            <input type="text" th:field="${userRegister.address.country}" id="country">-->
-
-            <!--            <label for="city"><b>City</b></label>-->
-            <!--            <input type="text" th:field="${userRegister.address.city}" id="city">-->
-
-            <!--            <label for="street"><b>Street</b></label>-->
-            <!--            <input type="text" th:field="${userRegister.address.street}" id="street">-->
-
-            <!--            <label for="zipcode"><b>Zip code</b></label>-->
-            <!--            <input type="text" th:field="${userRegister.address.zipCode}" id="zipcode">-->
-
             <form class="sign-up-form" th:action="@{/user/register}" th:object="${userRegister}" method="post">
                 <h2 class="title">Sign up</h2>
                 <div class="input-field">
@@ -84,7 +73,8 @@
                 <div class="input-field">
                     <i class="fas fa-check"></i>
                     <input type="password" th:field="${userRegister.confirmPassword}" placeholder="Confirm Password"/>
-                    <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="${userRegister.confirmPassword}"></span>
+                    <span th:if="${#fields.hasErrors('confirmPassword')}"
+                          th:errors="${userRegister.confirmPassword}"></span>
                 </div>
                 <input type="submit" class="btn" value="Sign up"/>
                 <p class="social-text">Or Sign up with social platforms</p>

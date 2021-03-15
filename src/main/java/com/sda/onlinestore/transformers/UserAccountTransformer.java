@@ -11,25 +11,14 @@ import org.springframework.stereotype.Component;
 public class UserAccountTransformer {
 
     public UserAccount transform(UserAccountDto userAccountDto){
-
-        Address address = new Address();
-        BeanUtils.copyProperties(userAccountDto.getAddress(), address);
-
         UserAccount userAccount = new UserAccount();
         BeanUtils.copyProperties(userAccountDto, userAccount);
-
-        userAccount.setAddress(address);
         return userAccount;
     }
 
     public UserAccountDto transformReversed(UserAccount userAccount){
-        AddressDto addressDto = new AddressDto();
-        BeanUtils.copyProperties(userAccount.getAddress(), addressDto);
-
         UserAccountDto userAccountDto = new UserAccountDto();
         BeanUtils.copyProperties(userAccount, userAccountDto);
-
-        userAccountDto.setAddress(addressDto);
         return userAccountDto;
     }
 }
