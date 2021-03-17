@@ -8,10 +8,4 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class CategoryMVCController {
 
-    private final CategoryService categoryService;
-
-    @Autowired
-    public CategoryMVCController(CategoryService categoryService){
-        this.categoryService = categoryService;
-    }
 }

@@ -1,23 +1,33 @@
 package com.sda.onlinestore.mvcController;
 
+import com.sda.onlinestore.dto.RoleDto;
 import com.sda.onlinestore.service.RoleService;
-import com.sda.onlinestore.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Controller
 public class RoleMVCController {
 
-    private final RoleService roleService;
-
     @Autowired
-    public RoleMVCController(RoleService roleService) {
-        this.roleService = roleService;
+    private RoleService roleService;
+
+    @PostMapping("/api/addRole")
+    public ResponseEntity addRole(@RequestBody RoleDto roleDto){
+        roleService.addRole(roleDto);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @GetMapping("/viewRole")
-    public String viewRole(){
-        return "role-list";
+    @GetMapping("/api/getRoles")
+    public ResponseEntity getRoles(){
+        List<RoleDto> roleDtoList = roleService.getRoles();
+        return ResponseEntity.ok(roleDtoList);
     }
 }

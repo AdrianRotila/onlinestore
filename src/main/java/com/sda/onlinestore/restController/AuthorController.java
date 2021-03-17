@@ -16,18 +16,4 @@ import java.util.List;
 @RestController
 public class AuthorController {
 
-    @Autowired
-    private AuthorService authorService;
-
-    @PostMapping("/api/addAuthor")
-    public ResponseEntity addAuthor(@RequestBody AuthorDto authorDto){
-        authorService.addAuthor(authorDto);
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
-
-    @GetMapping("/api/getAuthors")
-    public ResponseEntity getAuthors(){
-        List<AuthorDto> authorDtoList = authorService.getAuthors();
-        return ResponseEntity.ok(authorDtoList);
-    }
 }
