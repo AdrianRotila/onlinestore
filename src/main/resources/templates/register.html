@@ -1,54 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script
+            src="https://kit.fontawesome.com/64d58efce2.js"
+            crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" th:href="@{/css/register.css}"/>
+    <title>Sign in & Sign up Form</title>
 </head>
 <body>
-<form th:action="@{/user/register}" th:object="${userRegister}" method="post">
-    <div class="container">
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
-        <hr>
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <!--REGISTRATION FORM-->
 
-        <label for="username"><b>Username</b></label>
-        <input type="text" th:field="${userRegister.username}" id="username">
-        <span th:if="${#fields.hasErrors('username')}" th:errors="${userRegister.username}"></span>
+            <form class="sign-up-form" th:action="@{/user/register}" th:object="${userRegister}" method="post">
+                <h2 class="title">Sign up</h2>
 
-        <label for="email"><b>Email</b></label>
-        <input type="email" th:field="${userRegister.email}" id="email">
-        <span th:if="${#fields.hasErrors('email')}" th:errors="${userRegister.email}"></span>
+                <span th:if="${#fields.hasErrors('username')}" th:errors="${userRegister.username}"></span>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="${userRegister.email}"></span>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="${userRegister.password}"></span>
+                <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="${userRegister.confirmPassword}"></span>
 
-        <label for="country"><b>Country</b></label>
-        <input type="text" th:field="${userRegister.address.country}" id="country">
-
-        <label for="city"><b>City</b></label>
-        <input type="text" th:field="${userRegister.address.city}" id="city">
-
-        <label for="street"><b>Street</b></label>
-        <input type="text" th:field="${userRegister.address.street}" id="street">
-
-        <label for="zipcode"><b>Zip code</b></label>
-        <input type="text" th:field="${userRegister.address.zipCode}" id="zipcode">
-
-        <label for="password"><b>Password</b></label>
-        <input type="password" th:field="${userRegister.password}" id="password">
-        <span th:if="${#fields.hasErrors('password')}" th:errors="${userRegister.password}"></span>
-
-        <label for="confirmPassword"><b>Repeat Password</b></label>
-        <input type="password" th:field="${userRegister.confirmPassword}" id="confirmPassword">
-        <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="${userRegister.confirmPassword}"></span>
-
-        <hr>
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-        <button type="submit" class="registerbtn">Register</button>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" th:field="${userRegister.username}" placeholder="Username"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" th:field="${userRegister.email}" placeholder="Email"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" th:field="${userRegister.password}" placeholder="Password"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-check"></i>
+                    <input type="password" th:field="${userRegister.confirmPassword}" placeholder="Confirm Password"/>
+                </div>
+                <input id="register-btn" type="submit" class="btn" value="Sign up"/>
+                <p class="social-text">Or Sign up with social platforms</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <div class="container signin">
-        <p>Already have an account? <a href="/login">Sign in</a>.</p>
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>New here ?</h3>
+                <p>
+                    Create an account and start browsing through our wide range of products.
+                </p>
+                <button class="btn transparent" id="sign-up-btn">
+                    Sign up
+                </button>
+            </div>
+            <img th:src="@{/images/log.svg}" class="image" alt=""/>
+        </div>
+        <div class="panel right-panel">
+            <div class="content">
+                <h3>One of us ?</h3>
+                <p>
+                    Log in now into your online store account and start your shopping journey with us.
+                </p>
+                <button class="btn transparent" id="sign-in-btn">
+                    Sign in
+                </button>
+            </div>
+            <img th:src="@{/images/register.svg}" class="image" alt=""/>
+        </div>
     </div>
-</form>
+</div>
+
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>

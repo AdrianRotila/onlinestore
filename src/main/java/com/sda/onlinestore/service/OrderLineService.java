@@ -31,9 +31,9 @@ public class OrderLineService {
         List<OrderLineDto> orderLineDtoList = new ArrayList<>();
 
         for (OrderLine orderLine: orderLineList){
-            OrderLineDto orderLineDto = new OrderLineDto();
-            orderLineDto.setProduct(orderLine.getProduct());
-            orderLineDto.setQuantity(orderLine.getQuantity());
+//            OrderLineDto orderLineDto = new OrderLineDto();
+//            orderLineDto.setProduct(orderLine.getProduct());
+//            orderLineDto.setQuantity(orderLine.getQuantity());
         }
         return orderLineDtoList;
     }

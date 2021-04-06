@@ -1,8 +1,5 @@
 package com.sda.onlinestore.transformers;
-
-import com.sda.onlinestore.dto.AddressDto;
 import com.sda.onlinestore.dto.UserAccountDto;
-import com.sda.onlinestore.entity.Address;
 import com.sda.onlinestore.entity.UserAccount;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;

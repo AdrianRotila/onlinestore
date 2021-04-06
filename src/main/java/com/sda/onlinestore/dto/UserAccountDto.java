@@ -4,44 +4,30 @@ import com.sda.onlinestore.entity.Address;
 import com.sda.onlinestore.enums.PreferredChannel;
 import com.sda.onlinestore.entity.Role;
 
-public class UserAccountDto {
+import javax.validation.constraints.NotBlank;
 
-    private Long id;
+public class UserAccountDto extends BaseEntityDto{
+
     private String email;
     private String username;
     private String password;
     private String confirmPassword;
     private AddressDto addressDto;
-    private RoleDto role;
+    private RoleDto roleDto;
     private String thumbnail;
 
-    public UserAccountDto(Long id, AddressDto addressDto, String email, String password, String thumbnail, String confirmPassword, String username, RoleDto role) {
-        this.id = id;
+    public UserAccountDto(AddressDto addressDto, String email, String password, String thumbnail, String confirmPassword, String username, RoleDto roleDto) {
+
         this.email = email;
         this.password = password;
         this.thumbnail = thumbnail;
         this.confirmPassword = confirmPassword;
         this.username = username;
         this.addressDto = addressDto;
-        this.role = role;
+        this.roleDto = roleDto;
     }
 
     public UserAccountDto() {
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public AddressDto getAddressDto() {
-        return addressDto;
-    }
-
-    public void setAddressDto(AddressDto addressDto) {
-        this.addressDto = addressDto;
     }
 
 
@@ -53,20 +39,20 @@ public class UserAccountDto {
         this.email = email;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
     }
 
     public String getConfirmPassword() {
@@ -77,28 +63,27 @@ public class UserAccountDto {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public RoleDto getRole() {
-        return role;
-    }
-
-    public void setRole(RoleDto role) {
-        this.role = role;
-    }
-
-
-    public AddressDto getAddress() {
+    public AddressDto getAddressDto() {
         return addressDto;
     }
 
-    public void setAddress(AddressDto addressDto) {
+    public void setAddressDto(AddressDto addressDto) {
         this.addressDto = addressDto;
+    }
+
+    public RoleDto getRoleDto() {
+        return roleDto;
+    }
+
+    public void setRoleDto(RoleDto roleDto) {
+        this.roleDto = roleDto;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }

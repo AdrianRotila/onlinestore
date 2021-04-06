@@ -1,17 +1,17 @@
 package com.sda.onlinestore.service;
 
-
 import com.sda.onlinestore.dto.AddressDto;
-import com.sda.onlinestore.dto.ProductDto;
+import com.sda.onlinestore.dto.RoleDto;
 import com.sda.onlinestore.dto.UserAccountDto;
-import com.sda.onlinestore.entity.Product;
+import com.sda.onlinestore.entity.Address;
 import com.sda.onlinestore.entity.Role;
 import com.sda.onlinestore.entity.UserAccount;
 import com.sda.onlinestore.exception.NotFoundException;
+import com.sda.onlinestore.repository.RoleRepository;
 import com.sda.onlinestore.repository.UserAccountRepository;
+import com.sda.onlinestore.transformers.RoleTransformer;
 import com.sda.onlinestore.transformers.UserAccountTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,15 +29,27 @@ import java.util.Optional;
 public class UserAccountService implements UserDetailsService {
 
     @Autowired
+    private BCryptPasswordEncoder encoder;
+
+    @Autowired
     private final UserAccountRepository userAccountRepository;
+    @Autowired
+    private final UserAccountTransformer userAccountTransformer;
+    @Autowired
+    private final RoleRepository roleRepository;
+    @Autowired
+    private final RoleTransformer roleTransformer;
+
+
 
     @Autowired
-    private UserAccountTransformer userAccountTransformer;
-
-    @Autowired
-    public UserAccountService(UserAccountRepository userAccountRepository) {
+    public UserAccountService(UserAccountRepository userAccountRepository, RoleRepository roleRepository, RoleTransformer roleTransformer, UserAccountTransformer userAccountTransformer) {
+        this.roleRepository = roleRepository;
         this.userAccountRepository = userAccountRepository;
+        this.roleTransformer = roleTransformer;
+        this.userAccountTransformer = userAccountTransformer;
     }
+
 
     public UserAccount saveUserAccount(UserAccount userAccount) {
         return userAccountRepository.save(userAccount);
@@ -65,20 +77,18 @@ public class UserAccountService implements UserDetailsService {
     }
 
     public void addUserAccount(UserAccountDto userAccountDto) {
-        UserAccount userAccount = userAccountTransformer.transform(userAccountDto);
-        Role role = new Role();
-        if (userAccount.getUsername().equals("admin")) {
-            role.setRoleName("ADMIN");
-        } else {
-            role.setRoleName("USER");
-        }
-        userAccount.setRole(role);
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        UserAccount userAccount = userAccountTransformer.transform(userAccountDto);
+
+
+        Role role = new Role("ADMIN");
+        userAccount.setRole(role);
         userAccount.setPassword(bCryptPasswordEncoder.encode(userAccountDto.getPassword()));
+
         userAccountRepository.save(userAccount);
     }
 
-    public List<UserAccountDto> getUserAccounts() {
+    public List<UserAccountDto> getAllUserAccounts() {
         List<UserAccount> userAccounts = userAccountRepository.findAll();
         List<UserAccountDto> userAccountDtoList = new ArrayList<>();
 

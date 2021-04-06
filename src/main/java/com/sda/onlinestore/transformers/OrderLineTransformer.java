@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderLineTransformer {
 
-    public OrderLine transform(OrderLineDto orderLineDto) {
-        OrderLine orderLine = new OrderLine();
-        BeanUtils.copyProperties(orderLineDto, orderLine);
-        return orderLine;
-    }
-
-    public OrderLineDto transformReversed(OrderLine orderLine) {
-        OrderLineDto orderLineDto = new OrderLineDto();
-        BeanUtils.copyProperties(orderLine, orderLineDto);
-        return orderLineDto;
-    }
+//    public OrderLine transform(OrderLineDto orderLineDto) {
+//        OrderLine orderLine = new OrderLine();
+//        BeanUtils.copyProperties(orderLineDto, orderLine);
+//        return orderLine;
+//    }
+//
+//    public OrderLineDto transformReversed(OrderLine orderLine) {
+////        OrderLineDto orderLineDto = new OrderLineDto();
+////        BeanUtils.copyProperties(orderLine, orderLineDto);
+////        return orderLineDto;
+//    }
 }

@@ -15,6 +15,7 @@ import java.util.Optional;
 @Controller
 public class UserAccountMVCController {
 
+    @Autowired
     private final UserAccountService userAccountService;
 
     @Autowired
@@ -24,18 +25,18 @@ public class UserAccountMVCController {
 
     @RequestMapping("/login")
     public String login() {
-        return "signinSignup";
+        return "login";
     }
     @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "signinSignup";
+        return "login";
     }
 
     @GetMapping(path = "/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("userRegister", new UserAccountDto());
-        return "signinSignup";
+        return "register";
     }
 
 
@@ -49,28 +50,28 @@ public class UserAccountMVCController {
             result.rejectValue("password", null, "Passwords are not matching!");
         }
         if (result.hasErrors()) {
-            return "signinSignup";
+            return "register";
         }
         userAccountService.addUserAccount(userAccountDto);
-        return "signinSignup";
+        return "/login";
     }
 
     @GetMapping(path = "/viewUserAccounts")
     public String viewUserAccounts(Model model) {
-        model.addAttribute("users", this.userAccountService.getUserAccounts());
+        model.addAttribute("users", this.userAccountService.getAllUserAccounts());
         return "userAccount-list";
-    }
-
-    @GetMapping(path = "/userAccount/edit/{id}")
-    public String showEditPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("userAccount", this.userAccountService.findUserAccountById(id));
-        return "edit-userAccount";
     }
 
     @GetMapping(path = "/userAccount/delete/{id}")
     public String deleteUserAccountById(@PathVariable("id") Long id, Model model) {
         this.userAccountService.deleteUserAccountById(id);
         return "redirect:/viewUserAccounts";
+    }
+
+    @GetMapping(path = "/userAccount/edit/{id}")
+    public String showEditPage(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("userAccount", this.userAccountService.findUserAccountById(id));
+        return "edit-userAccount";
     }
 
     @PostMapping(path = "/userAccount/update")

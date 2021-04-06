@@ -35,7 +35,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-style: italic">
                     <a class="dropdown-item" href="/register">Register user</a>
-                    <a class="dropdown-item" href="userAccount-list.html">User accounts</a>
+                    <a class="dropdown-item" href="/userAccount-list">User accounts</a>
                 </div>
             </li>
         </ul>
@@ -62,7 +62,7 @@
     <th>Country</th>
     <th>City</th>
     <th>Street</th>
-    <th>Zip Code</th>
+    <th>Postcode</th>
     <th sec:authorize="hasRole('ROLE_ADMIN')">Edit</th>
     <th sec:authorize="hasRole('ROLE_ADMIN')">Delete</th>
     </thead>
@@ -70,16 +70,12 @@
     <tr th:each="user : ${users}">
         <td th:text="${user.username}"></td>
         <td th:text="${user.email}"></td>
-        <td th:text="${user.address.country}"></td>
-        <td th:text="${user.address.city}"></td>
-        <td th:text="${user.address.street}"></td>
-        <td th:text="${user.address.zipCode}"></td>
-        <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary"
-                                                     th:href="@{/userAccount/edit/{id}(id = ${user.id})}"><i
-                class="fas fa-user-edit"></i></a></td>
-        <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger"
-                                                     th:href="@{/userAccount/delete/{id}(id = ${user.id})}"><i
-                class="fas fa-trash-alt"></i></a></td>
+<!--        <td th:text="${user.address.country}"></td>-->
+<!--        <td th:text="${user.address.city}"></td>-->
+<!--        <td th:text="${user.address.street}"></td>-->
+<!--        <td th:text="${user.address.postCode}"></td>-->
+        <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary" th:href="@{/userAccount/edit/{id}(id = ${user.id})}"><i class="fas fa-user-edit"></i></a></td>
+        <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger" th:href="@{/userAccount/delete/{id}(id = ${user.id})}"><i class="fas fa-trash-alt"></i></a></td>
     </tr>
     </tbody>
 </table>

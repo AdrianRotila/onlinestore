@@ -3,9 +3,20 @@ import com.sda.onlinestore.entity.Product;
 
 public class OrderLineDto {
 
+    private Long id;
     private Product product;
     private int quantity;
     private double price;
+
+    public OrderLineDto(Long id, Product product, int quantity, double price) {
+        this.id = id;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public OrderLineDto() {
+    }
 
     public Product getProduct() {
         return product;
@@ -29,5 +40,13 @@ public class OrderLineDto {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

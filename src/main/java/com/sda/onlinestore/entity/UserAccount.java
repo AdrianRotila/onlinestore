@@ -4,22 +4,17 @@ import com.sda.onlinestore.enums.PreferredChannel;
 
 import javax.persistence.*;
 
-
 @Entity
-public class UserAccount {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserAccount extends BaseEntity{
 
     private String username;
     private String email;
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Role role;
 
     private String thumbnail;

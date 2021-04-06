@@ -29,14 +29,6 @@ public class ProductDto {
     public ProductDto() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -83,5 +75,13 @@ public class ProductDto {
 
     public void setAuthorDto(AuthorDto authorDto) {
         this.authorDto = authorDto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

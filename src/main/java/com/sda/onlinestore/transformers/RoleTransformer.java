@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleTransformer {
 
-    public Role transform(RoleDto roleDto){
+    public Role transform(RoleDto roleDto) {
         Role role = new Role();
-        BeanUtils.copyProperties(roleDto,role);
+        BeanUtils.copyProperties(roleDto, role);
         return role;
     }
 
-    public RoleDto transformReversed (Role role){
+    public RoleDto transformReversed(Role role) {
         RoleDto roleDto = new RoleDto();
         BeanUtils.copyProperties(role, roleDto);
         return roleDto;

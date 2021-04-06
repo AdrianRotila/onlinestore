@@ -5,13 +5,13 @@ public class AddressDto {
     private String country;
     private String city;
     private String street;
-    private Long zipCode;
+    private String postCode;
 
-    public AddressDto(String country, String city, String street, Long zipCode) {
+    public AddressDto(String country, String city, String street, String postCode) {
         this.country = country;
         this.city = city;
         this.street = street;
-        this.zipCode = zipCode;
+        this.postCode = postCode;
     }
 
     public AddressDto() {
@@ -41,11 +41,11 @@ public class AddressDto {
         this.street = street;
     }
 
-    public Long getZipCode() {
-        return zipCode;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setZipCode(Long zipCode) {
-        this.zipCode = zipCode;
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 }
