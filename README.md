@@ -1,3 +1,3 @@
 # onlinestore
 Work in progress!
-But first, log in with Username: admin and Password: admin. You are going to have some simple functionalities.
+Create an account using username and password "admin" and then add/remove/edit data stored in database.
